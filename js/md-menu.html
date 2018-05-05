@@ -1,0 +1,24 @@
+<link rel="stylesheet" href="http://yandex.st/highlightjs/6.2/styles/googlecode.min.css">
+
+<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+<script src="http://yandex.st/highlightjs/6.2/highlight.min.js"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+	// 将这段代码放到md文件的起始部分，导出为html后，会自动在前边添加toc，不过不是侧边栏形式的导航，不够完美
+	$(document).ready(function(){
+		$("h1,h2,h3,h4,h5,h6").each(function(i,item){
+			var tag = $(item).get(0).localName;
+			var space = 0, STEP=20
+			$(item).attr("id","wow"+i);
+			$("#category").append('<a class="new'+tag+'" href="#wow'+i+'">'+$(this).text()+'</a></br>');
+			$(".newh1").css("margin-left",space=space+STEP);
+			$(".newh2").css("margin-left",space=space+STEP);
+			$(".newh3").css("margin-left",space=space+STEP);
+			$(".newh4").css("margin-left",space=space+STEP);
+			$(".newh5").css("margin-left",space=space+STEP);
+			$(".newh6").css("margin-left",space=space+STEP);
+		});
+	});
+</script>
+<div id="category"></div>
