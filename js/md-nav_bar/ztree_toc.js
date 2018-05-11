@@ -57,7 +57,10 @@ function factor(opts ,count,current) {
 	function create_toc(opts) {
 		$(opts.documment_selector).find(':header').each(function() {
 			var level = parseInt(this.nodeName.substring(1), 10);
-			
+			if (level>opts.header_level)
+			{
+				return;
+			}
 			_rename_header_content(opts,this,level);
 			
 			_add_header_node(opts,$(this));
@@ -183,6 +186,7 @@ function factor(opts ,count,current) {
 	$.fn.ztree_toc = function(options) {
 		// 将defaults 和 options 参数合并到{}
 		var opts = $.extend({},$.fn.ztree_toc.defaults,options);
+		opts.ztreeSetting.view.dblClickExpand = opts.dblClickExpand;
 		
 		return this.each(function() {
 			opts._zTree = $(this);
@@ -211,6 +215,8 @@ function factor(opts ,count,current) {
 		debug: true,
 		highlight_offset: 0,
 		highlight_on_scroll: true,
+		header_level:6,
+		dblClickExpand: false,
 		/*
 		 * 计算滚动判断当前位置的时间，默认是50毫秒
 		 */
